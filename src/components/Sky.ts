@@ -1,8 +1,12 @@
 import {
+    BackgroundMaterial,
     CubeTexture,
     DirectionalLight,
     ImageProcessingConfiguration,
+    Mesh,
+    MeshBuilder,
     Scene,
+    Texture,
     TransformNode,
     Vector3,
 } from "babylonjs";
@@ -19,28 +23,48 @@ export class Sky {
     constructor(readonly props: SkyProps) {
         console.log("Sky created");
 
-        // Environment lighting maps to be cycled through
-        var env256 = CubeTexture.CreateFromPrefilteredData(
+        // Load and set an environment map
+        const environmentMap = CubeTexture.CreateFromPrefilteredData(
             props.skyboxTexture,
             props.scene
         );
-        env256.name = "flowerRoad_256";
-        env256.gammaSpace = false;
-        props.scene.environmentTexture = env256;
+        props.scene.environmentTexture = environmentMap.clone();
+        environmentMap.coordinatesMode = Texture.SKYBOX_MODE;
+        props.scene.environmentIntensity = 0.7;
 
-        props.scene.createDefaultSkybox(env256, true, props.skyboxSize);
-
-        props.scene.imageProcessingConfiguration.toneMappingEnabled = true;
-        props.scene.imageProcessingConfiguration.toneMappingType =
-            ImageProcessingConfiguration.TONEMAPPING_ACES;
-
-        this.light = new DirectionalLight(
-            "directional",
-            new Vector3(-0.5, -0.65, -0.57),
+        // Create a skydome
+        const skydome = MeshBuilder.CreateBox(
+            "box",
+            { size: 10000, sideOrientation: Mesh.BACKSIDE },
             props.scene
         );
-        var lightParent = new TransformNode("lightParent");
-        lightParent.position = Vector3.Zero();
-        this.light.parent = lightParent;
+        //skydome.position.y = 5000;
+        skydome.isPickable = false;
+        //skydome.receiveShadows = true;
+
+        // Sets the skydome in ground projection mode
+        const sky = new BackgroundMaterial("skyMaterial", props.scene);
+        sky.reflectionTexture = environmentMap;
+        sky.enableGroundProjection = true;
+        sky.projectedGroundRadius = 5000;
+        sky.projectedGroundHeight = 500;
+        skydome.material = sky;
+
+        // Fancy Image Processing setup
+        props.scene.imageProcessingConfiguration.exposure = 1.6;
+        props.scene.imageProcessingConfiguration.toneMappingEnabled = true;
+        props.scene.imageProcessingConfiguration.toneMappingType =
+            BABYLON.ImageProcessingConfiguration.TONEMAPPING_ACES;
+
+        // Setup a Light to cast shadows
+        this.light = new DirectionalLight(
+            "light0",
+            new Vector3(-800, -1400, -1000),
+            props.scene
+        );
+        this.light.intensity = 2;
+        this.light.shadowMinZ = 1800;
+        this.light.shadowMaxZ = 2100;
+        this.light.diffuse = new BABYLON.Color3(1, 0.9, 0.6);
     }
 }

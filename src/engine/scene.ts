@@ -7,6 +7,7 @@ import {
     Vector3,
     WebGPUEngine,
     Color4,
+    ScenePerformancePriority,
 } from "babylonjs";
 import { Part } from "../components/Part";
 import { Sky } from "../components/Sky";
@@ -26,9 +27,9 @@ export const createScene = (
     const camera = new ArcRotateCamera(
         "MainCamera",
         0,
-        Math.PI / 2,
-        40,
-        new Vector3(0, 0, 0),
+        0,
+        0,
+        new Vector3(0, 10, 0),
         scene
     );
 
@@ -38,7 +39,7 @@ export const createScene = (
     // This attaches the camera to the canvas
     camera.attachControl(canvas, true);
 
-    camera.position = new Vector3(40, 40, 0);
+    camera.position = new Vector3(40, 10, 40);
 
     const sky = new Sky({
         scene,
@@ -52,21 +53,26 @@ export const createScene = (
     });
 
     // PHYSICS!
-    scene.enablePhysics(null, hk);
+    scene.enablePhysics(new Vector3(0, -9.81, 0), hk);
 
-    // pastel blue ball
-    const sphere = new Part({
-        canCollide: true,
-        color: Color3.FromHexString("#87CEEB"),
-        mass: 1,
-        name: "sphere",
-        position: new Vector3(0, 9, 0),
-        scene: scene,
-        shape: "sphere",
-        size: new Vector3(2, 2, 2),
-        shadow_generator: shadows.generator,
-        castShadows: true,
-    });
+    {
+        Array.from({ length: 20 }).forEach((_, i) => {
+            Array.from({ length: 20 }).forEach((_, j) => {
+                const box = new Part({
+                    canCollide: true,
+                    color: Color3.FromHexString("#FFD700"),
+                    mass: 1,
+                    name: `box-${i}-${j}`,
+                    position: new Vector3(0, j * 1.1 + 0.5, i * 1 - 10),
+                    scene: scene,
+                    shape: "box",
+                    size: new Vector3(1, 1, 1),
+                    shadow_generator: shadows.generator,
+                    castShadows: true,
+                });
+            });
+        });
+    }
 
     const ground = new Part({
         canCollide: true,

@@ -26,6 +26,7 @@ interface PartProps {
     physicsType?: PhysicsMotionType;
     receiveShadows?: boolean;
     castShadows?: boolean;
+    opacity?: number;
 }
 
 export class Part {
@@ -108,13 +109,17 @@ export class Part {
             }
 
             // Set shape material properties
-            partsShape.material = { friction: 0.4, restitution: 0.4 };
+            partsShape.material = { friction: 0.3, restitution: 0 };
 
             // Associate shape and body
             partsBody.shape = partsShape;
 
             // And body mass
-            partsBody.setMassProperties({ mass: 1 });
+            partsBody.setMassProperties({
+                mass: props.mass,
+                inertia: Vector3.Zero(),
+                inertiaOrientation: Quaternion.Identity(),
+            });
 
             if (props.receiveShadows) part.receiveShadows = true;
 
