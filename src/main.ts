@@ -1,8 +1,9 @@
-import { AppOne as App } from './AppOne';
+import { Game } from "./game";
 
-console.log(`main.ts starting ${App.name}`);
-window.addEventListener('DOMContentLoaded', () => {
-    let canvas = document.getElementById('renderCanvas') as HTMLCanvasElement;
-    let app = new App(canvas);
+console.log(`main.ts starting ${Game.name}`);
+window.addEventListener("DOMContentLoaded", async () => {
+    const canvas = document.getElementById("renderCanvas") as HTMLCanvasElement;
+    const app = new Game(canvas, false);
+    await app.init();
     app.run();
 });
