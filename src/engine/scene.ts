@@ -7,7 +7,6 @@ import {
     Vector3,
     WebGPUEngine,
     Color4,
-    ScenePerformancePriority,
 } from "babylonjs";
 import { Part } from "../components/Part";
 import { Sky } from "../components/Sky";
@@ -56,19 +55,20 @@ export const createScene = (
     scene.enablePhysics(new Vector3(0, -9.81, 0), hk);
 
     {
-        Array.from({ length: 20 }).forEach((_, i) => {
-            Array.from({ length: 20 }).forEach((_, j) => {
+        Array.from({ length: 10 }).forEach((_, i) => {
+            Array.from({ length: 100 }).forEach((_, j) => {
                 const box = new Part({
                     canCollide: true,
                     color: Color3.FromHexString("#FFD700"),
                     mass: 1,
                     name: `box-${i}-${j}`,
-                    position: new Vector3(0, j * 1.1 + 0.5, i * 1 - 10),
+                    position: new Vector3(0, j * 3 + 0.5, i * 1 - 10),
                     scene: scene,
                     shape: "box",
                     size: new Vector3(1, 1, 1),
                     shadow_generator: shadows.generator,
                     castShadows: true,
+                    material_properties: { restitution: 0, friction: 1 },
                 });
             });
         });

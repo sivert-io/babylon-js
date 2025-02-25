@@ -5,6 +5,7 @@ import {
     CreateSphere,
     PBRMetallicRoughnessMaterial,
     PhysicsBody,
+    PhysicsMaterial,
     PhysicsMotionType,
     PhysicsShapeBox,
     PhysicsShapeSphere,
@@ -27,6 +28,7 @@ interface PartProps {
     receiveShadows?: boolean;
     castShadows?: boolean;
     opacity?: number;
+    material_properties?: PhysicsMaterial;
 }
 
 export class Part {
@@ -109,7 +111,10 @@ export class Part {
             }
 
             // Set shape material properties
-            partsShape.material = { friction: 0.3, restitution: 0 };
+            partsShape.material = props.material_properties ?? {
+                friction: 0.3,
+                restitution: 0,
+            };
 
             // Associate shape and body
             partsBody.shape = partsShape;
@@ -117,8 +122,6 @@ export class Part {
             // And body mass
             partsBody.setMassProperties({
                 mass: props.mass,
-                inertia: Vector3.Zero(),
-                inertiaOrientation: Quaternion.Identity(),
             });
 
             if (props.receiveShadows) part.receiveShadows = true;
