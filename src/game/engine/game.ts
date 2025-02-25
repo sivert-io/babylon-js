@@ -1,8 +1,8 @@
 // game.ts
 import * as BABYLON from "babylonjs";
-import { createEngine } from "./engine/engine";
-import { createScene } from "./engine/scene";
-import { getInitializedHavok } from "./engine/physics";
+import { createEngine } from "./engine";
+import { createScene } from "./scene";
+import { getInitializedHavok } from "./physics";
 
 export class Game {
     engine!: BABYLON.WebGPUEngine;
