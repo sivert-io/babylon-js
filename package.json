@@ -1,15 +1,13 @@
 {
   "name": "friends",
+  "engines": { "node": "22" },
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --open",
     "build": "tsc && vite build",
     "preview": "tsc && vite build && vite preview --host --open"
   },
-  "typeRoots": [
-    "node_modules/@types",
-    "src/@types"
-  ],
+  "typeRoots": ["node_modules/@types", "src/@types"],
   "devDependencies": {
     "@eslint/js": "^9.21.0",
     "@types/react": "^19.0.10",
