@@ -19,7 +19,10 @@ function GameTag({
 
 export function GameCard({ game }: { game: Place }) {
   return (
-    <button className="select-none w-full h-full flex flex-col justify-start clickable overflow-hidden bg-black/25">
+    <a
+      href="/game"
+      className="select-none w-full h-full flex flex-col justify-start clickable overflow-hidden bg-black/25"
+    >
       <div className="relative flex-5/6">
         <img
           draggable={false}
@@ -44,6 +47,6 @@ export function GameCard({ game }: { game: Place }) {
         <p className="font-bold">{game.name}</p>
         {game.creator && <p>{game.creator}</p>}
       </div>
-    </button>
+    </a>
   );
 }
