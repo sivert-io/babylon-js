@@ -1,11 +1,11 @@
-import { CaretDown, Coin, Money, MoneyWavy } from "@phosphor-icons/react";
+import { CaretDown, Coin, MoneyWavy } from "@phosphor-icons/react";
 import { avatar } from "../utils/generateAvatar";
 import numbro from "numbro";
 
 export function NavBar() {
   const signedIn = true;
   return (
-    <nav className="sticky -top-12 left-0 right-0 text-primary flex justify-center z-50">
+    <nav className="sticky top-0 left-0 right-0 text-primary flex justify-center z-50">
       <div className="flex items-center justify-between gap-12 backdrop-blur-lg p-8 bg-black/75 max-w-[1200px] w-full">
         <div className="flex items-center gap-12">
           <a className="clickable" href="/">
