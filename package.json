@@ -1,6 +1,6 @@
 {
   "name": "friends",
-  "engines": { "node": "21" },
+  "engines": { "node": "22" },
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --open",
