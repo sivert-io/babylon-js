@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Game } from "./game/engine/game";
+import { Game } from "../../game/engine/game";
 
 export function GameView() {
   const canvasRef = useRef<HTMLCanvasElement>(null);

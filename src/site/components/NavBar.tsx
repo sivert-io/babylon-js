@@ -5,20 +5,20 @@ import numbro from "numbro";
 export function NavBar() {
   const signedIn = true;
   return (
-    <nav className="sticky top-0 left-0 right-0 text-primary flex justify-center z-50">
-      <div className="flex items-center justify-between gap-12 backdrop-blur-lg p-8 bg-black/75 max-w-[1200px] w-full">
+    <nav className="sticky -top-3 left-0 right-0 text-primary flex justify-center z-50">
+      <div className="flex items-center justify-between gap-12 backdrop-blur p-8 bg-black/25 rounded-xl max-w-[1200px] w-full">
         <div className="flex items-center gap-12">
           <a className="clickable" href="/">
             <h1 className="text-2xl font-bold">Qubix</h1>
           </a>
-          <div className="flex items-center gap-6">
-            <a href="/browse" className="text-sm">
+          <div className="flex items-center gap-6 text-sm">
+            <a href="/browse" className="clickable">
               Browse
             </a>
-            <a href="/market" className="text-sm">
+            <a href="/market" className="clickable">
               Market
             </a>
-            <a href="/forum" className="text-sm">
+            <a href="/forum" className="clickable">
               Forum
             </a>
           </div>

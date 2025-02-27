@@ -21,7 +21,7 @@ export function GameCard({ game }: { game: Place }) {
   return (
     <a
       href="/game"
-      className="select-none w-full h-full flex flex-col justify-start clickable overflow-hidden bg-black/25"
+      className="select-none w-full h-full flex flex-col justify-start clickable overflow-hidden bg-black/25 rounded-lg"
     >
       <div className="relative flex-5/6">
         <img

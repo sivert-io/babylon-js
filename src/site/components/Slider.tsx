@@ -44,7 +44,7 @@ export const Slider: React.FC<SliderProps> = ({
           animate={{
             x: `calc(-${currentIndex * 100}% - ${currentIndex * 16}px)`,
           }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={{ duration: 1.25, ease: "easeInOut" }}
           style={{ width: "100%", display: "flex" }}
         >
           {Array.from({ length: totalPages }).map((_, pageIndex) => (
@@ -71,8 +71,8 @@ export const Slider: React.FC<SliderProps> = ({
         {Array.from({ length: totalPages }).map((_, index) => (
           <button
             key={index}
-            className={`w-4 h-4 border-3 border-gray-400 rounded-full bg-gray-400 ${
-              currentIndex === index ? "bg-gray-800" : ""
+            className={`w-3 h-3  rounded-full ${
+              currentIndex === index ? "bg-white" : "bg-black/25"
             }`}
             onClick={() => goToSlide(index)}
           ></button>
