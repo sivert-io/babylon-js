@@ -1,2 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+@theme {
+  --color-background: #111827;
+  --color-surface-1: #1f2937;
+  --color-surface-2: #374151;
+
+  --color-accent: #60a5fa;
+  --color-accent-hover: #3b82f6;
+
+  --color-primary: #f3f4f6;
+  --color-secondary: #d1d5db;
+
+  --color-error: #ef4444;
+  --color-warning: #facc15;
+  --color-success: #4ade80;
+  --color-info: #22d3ee;
+
+  --color-fun-purple: #c084fc;
+  --color-fun-pink: #f472b6;
+}
+
+@layer components {
+  .clickable {
+    @apply cursor-pointer active:scale-95 transition-transform duration-75;
+  }
+}
+
+* {
+  font-family: "Poppins", serif;
+  font-style: normal;
+}
+
+a, button {
+  cursor: pointer;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Hide the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-2); /* Match surface-2 for a subtle look */
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-surface-1); /* Slightly lighter on hover */
+}

@@ -25,11 +25,15 @@
   },
   "dependencies": {
     "@babylonjs/havok": "^1.3.10",
+    "@dicebear/collection": "^9.2.2",
+    "@dicebear/core": "^9.2.2",
     "@heroui/react": "^2.7.2",
+    "@phosphor-icons/react": "^2.1.7",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.0.9",
     "babylonjs": "^7.50.0",
     "framer-motion": "^12.4.7",
+    "numbro": "^2.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "^4.0.9"
